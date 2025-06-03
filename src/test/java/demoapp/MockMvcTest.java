@@ -1,16 +1,20 @@
 package demoapp;
 
+
+import demoapp.service.PalindromeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,8 +37,21 @@ public class MockMvcTest {
     @Test
     public void postShoudReturnCorrectResponse() throws Exception {
         this.mockMvc.perform(post("/saludoform")
-                .param("nombre", "Juan"))
+                        .param("nombre", "Juan"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hola Juan")));
+    }
+
+    @MockBean
+    private PalindromeService palindromeService;
+
+    @Test
+    public void testCheckPalindrome() throws Exception {
+        when(palindromeService.isPalindrome("madam")).thenReturn(true);
+
+        mockMvc.perform(post("/palindrome").param("word", "madam"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("isPalindrome", true))
+                .andExpect(view().name("palindromeResult"));
     }
 }
