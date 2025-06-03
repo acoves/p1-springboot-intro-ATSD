@@ -16,6 +16,9 @@ public class ServiceTest {
     @Autowired
     SaludoService saludo;
     PalindromeService palindromeService = new PalindromeService(); // PalindromeService is a service
+    EvenNumberService evenNumberService = new EvenNumberService(); // EvenNumberService is a service
+
+
 
     @Test
     public void contexLoads() throws Exception {
@@ -33,5 +36,16 @@ public class ServiceTest {
         assertFalse(palindromeService.isPalindrome("hello"));
         assertTrue(palindromeService.isPalindrome("A man a plan a canal Panama"));
         assertFalse(palindromeService.isPalindrome(null));
+    }
+
+
+
+
+    @Test //EvenNumberService is a service
+    public void testIsEven() {
+        assertTrue(evenNumberService.isEven(2));
+        assertFalse(evenNumberService.isEven(3));
+        assertTrue(evenNumberService.isEven(0));
+        assertFalse(evenNumberService.isEven(-1));
     }
 }

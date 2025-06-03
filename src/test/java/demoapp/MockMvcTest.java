@@ -1,6 +1,7 @@
 package demoapp;
 
 
+import demoapp.service.EvenNumberService;
 import demoapp.service.PalindromeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,20 @@ public class MockMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("isPalindrome", true))
                 .andExpect(view().name("palindromeResult"));
+    }
+
+
+
+    @MockBean
+    private EvenNumberService evenNumberService;
+
+    @Test
+    public void testCheckEvenNumber() throws Exception {
+        when(evenNumberService.isEven(2)).thenReturn(true);
+
+        mockMvc.perform(post("/evenNumber").param("number", "2"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("isEven", true))
+                .andExpect(view().name("evenNumberResult"));
     }
 }
