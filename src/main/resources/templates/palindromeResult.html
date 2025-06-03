@@ -1,0 +1,7 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:text="'The word ' + ${word} + ' is ' + (${isPalindrome} ? '' : 'not ') + ' a palindrome.'"></p>
+<a href="/palindrome">Check another word</a>
+</body>
+</html>

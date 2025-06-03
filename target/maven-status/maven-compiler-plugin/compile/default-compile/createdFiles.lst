@@ -1,7 +1,9 @@
 demoapp\controller\SaludoControllerPlantilla.class
-demoapp\controller\SaludoController.class
 demoapp\service\SaludoService.class
 demoapp\controller\SaludoControllerForm.class
 demoapp\Application.class
 demoapp\controller\UserData.class
+demoapp\controller\SaludoController.class
+demoapp\controller\PalindromeController.class
+demoapp\service\PalindromeService.class
 demoapp\controller\HomeController.class
