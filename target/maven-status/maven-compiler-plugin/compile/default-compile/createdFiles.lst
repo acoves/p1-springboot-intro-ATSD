@@ -4,8 +4,10 @@ demoapp\controller\SaludoControllerForm.class
 demoapp\Application.class
 demoapp\controller\UserData.class
 demoapp\service\EvenNumberService.class
+demoapp\controller\CalculatorController.class
 demoapp\controller\SaludoController.class
 demoapp\controller\PalindromeController.class
+demoapp\service\CalculatorService.class
 demoapp\service\PalindromeService.class
 demoapp\controller\EvenNumberController.class
 demoapp\controller\HomeController.class

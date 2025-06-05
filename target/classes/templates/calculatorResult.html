@@ -1,0 +1,8 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:if="${error}" th:text="${error}"></p>
+<p th:if="${result != null}" th:text="'The result of ' + ${number1} + ' ' + ${operation} + ' ' + ${number2} + ' is ' + ${result} + '.'"></p>
+<a href="/calculator">Perform another calculation</a>
+</body>
+</html>
