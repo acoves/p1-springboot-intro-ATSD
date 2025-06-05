@@ -4,6 +4,7 @@ package demoapp;
 import demoapp.service.CalculatorService;
 import demoapp.service.EvenNumberService;
 import demoapp.service.PalindromeService;
+import demoapp.service.SquareService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -82,5 +83,19 @@ public class MockMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("isEven", true))
                 .andExpect(view().name("evenNumberResult"));
+    }
+
+    //SquareService is a service
+    @MockBean
+    private SquareService squareService;
+
+    @Test
+    public void testCheckSquare() throws Exception {
+        when(squareService.isSquare(2, 4)).thenReturn(true);
+
+        mockMvc.perform(post("/square").param("number1", "2").param("number2", "4"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("isSquare", true))
+                .andExpect(view().name("squareResult"));
     }
 }
